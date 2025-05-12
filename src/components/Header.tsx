@@ -31,7 +31,7 @@ export default function Header() {
 
 	return (
 		<header
-			className={`fixed w-full z-50 transition-all duration-300 ease-in-out
+			className={`fixed w-full z-50 transition-all duration-300 ease-in-out font-rubik
         ${
 					isScrolled
 						? 'bg-primary-900/95 backdrop-blur py-2'

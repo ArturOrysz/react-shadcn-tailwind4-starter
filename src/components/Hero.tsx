@@ -33,7 +33,7 @@ export default function Hero() {
 	}, []);
 
 	return (
-		<section className="relative h-[60vh] md:h-screen overflow-hidden bg-primary-900 font-sans">
+		<section className="relative h-[60vh] md:h-screen overflow-hidden bg-primary-900">
 			<div className="absolute inset-0">
 				{slides.map((slide, index) => (
 					<div
@@ -62,7 +62,7 @@ export default function Hero() {
 											<span className="inline-block text-accent-400 mb-2 font-rubik text-sm tracking-wider uppercase">
 												{slide.label}
 											</span>
-											<h2 className="text-4xl md:text-6xl font-bold text-white mb-6 font-rubik leading-tight">
+											<h2 className="text-4xl md:text-6xl font-rubik font-bold text-white mb-6">
 												{slide.title}
 											</h2>
 											<button className="inline-flex items-center px-6 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-primary-900 transition-colors font-rubik">
