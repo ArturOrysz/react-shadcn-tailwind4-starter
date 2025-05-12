@@ -1,5 +1,5 @@
-import logo from '@/images/logo.svg';
-import { useState } from 'react';
+import logo from '@/assets/images/logo.svg';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const menuItems = [
@@ -13,19 +13,39 @@ const menuItems = [
 
 export default function Header() {
 	const [mobileOpen, setMobileOpen] = useState(false);
+	const [isScrolled, setIsScrolled] = useState(false);
 	const location = useLocation();
+
+	useEffect(() => {
+		const handleScroll = () => {
+			// Sprawdzamy czy przewinięto 25% wysokości viewportu
+			const scrollThreshold = window.innerHeight * 0.25;
+			setIsScrolled(window.scrollY > scrollThreshold);
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
 
 	const isActive = (path: string) => location.pathname === path;
 
 	return (
-		<header className="fixed w-full z-50 transition-colors duration-300">
-			<div className="container mx-auto px-4 py-4">
-				<div className="flex items-center justify-between bg-transparent">
-					<Link to="/" className="text-2xl font-bold text-white">
+		<header
+			className={`fixed w-full z-50 transition-all duration-300 ease-in-out
+        ${
+					isScrolled
+						? 'bg-primary-900/95 backdrop-blur py-2'
+						: 'bg-transparent py-4'
+				}`}
+		>
+			<div className="container mx-auto px-4">
+				<div className="flex items-center justify-between">
+					<Link to="/" className="flex items-center">
 						<img
 							src={logo}
 							alt="Detroit Cars Logo"
-							className="h-10 w-auto" // dostosuj rozmiar według potrzeb
+							className={`transition-all duration-300 ease-in-out
+                ${isScrolled ? 'h-8' : 'h-10'} w-auto hover:opacity-80`}
 						/>
 					</Link>
 
@@ -35,11 +55,14 @@ export default function Header() {
 							<Link
 								key={path}
 								to={path}
-								className={`text-sm hover:text-accent-400 transition-colors ${
-									isActive(path)
-										? 'text-accent-400 font-medium'
-										: 'text-white/90'
-								}`}
+								className={`text-sm transition-all duration-300 ease-in-out
+                  ${isScrolled ? 'py-1' : 'py-2'}
+                  hover:text-accent-400 
+                  ${
+										isActive(path)
+											? 'text-accent-400 font-medium'
+											: 'text-white/90'
+									}`}
 							>
 								{label}
 							</Link>
@@ -47,10 +70,18 @@ export default function Header() {
 					</nav>
 
 					<div className="hidden md:flex space-x-4">
-						<button className="px-4 py-2 border border-white/30 text-white rounded hover:bg-white/10 transition-colors">
+						<button
+							className={`transition-all duration-300 ease-in-out
+                border border-white/30 text-white rounded hover:bg-white/10
+                ${isScrolled ? 'px-3 py-1.5' : 'px-4 py-2'}`}
+						>
 							Zaloguj
 						</button>
-						<button className="px-4 py-2 bg-accent-600 text-white rounded hover:bg-accent-700 transition-colors">
+						<button
+							className={`transition-all duration-300 ease-in-out
+                bg-accent-600 text-white rounded hover:bg-accent-700
+                ${isScrolled ? 'px-3 py-1.5' : 'px-4 py-2'}`}
+						>
 							Zarejestruj
 						</button>
 					</div>

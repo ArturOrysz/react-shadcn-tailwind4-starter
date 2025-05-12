@@ -40,6 +40,10 @@ module.exports = {
 					800: '#500011',
 					900: '#280009',
 				},
+				fontFamily: {
+					sans: ['Poppins', 'sans-serif'],
+					rubik: ['Rubik', 'sans-serif'],
+				},
 			},
 		},
 	},

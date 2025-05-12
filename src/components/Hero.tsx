@@ -33,7 +33,7 @@ export default function Hero() {
 	}, []);
 
 	return (
-		<section className="relative h-[60vh] md:h-screen overflow-hidden bg-primary-900">
+		<section className="relative h-[60vh] md:h-screen overflow-hidden bg-primary-900 font-sans">
 			<div className="absolute inset-0">
 				{slides.map((slide, index) => (
 					<div
@@ -49,7 +49,9 @@ export default function Hero() {
 							<div className="absolute inset-0 bg-primary-900/50" />
 						</div>
 						<div className="relative h-full flex items-center">
-							<div className="container mx-auto px-4">
+							<div className="container mx-auto px-8 md:px-16 lg:px-24">
+								{' '}
+								{/* Zwiększone paddingi */}
 								<div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
 									<div className="md:col-span-7">
 										<div
@@ -57,13 +59,13 @@ export default function Hero() {
 											data-aos="fade-up"
 											data-aos-duration="1000"
 										>
-											<span className="inline-block text-accent-400 mb-2">
+											<span className="inline-block text-accent-400 mb-2 font-rubik text-sm tracking-wider uppercase">
 												{slide.label}
 											</span>
-											<h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+											<h2 className="text-4xl md:text-6xl font-bold text-white mb-6 font-rubik leading-tight">
 												{slide.title}
 											</h2>
-											<button className="inline-flex items-center px-6 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-primary-900 transition-colors">
+											<button className="inline-flex items-center px-6 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-primary-900 transition-colors font-rubik">
 												<span>Zobacz szczegóły</span>
 											</button>
 										</div>
