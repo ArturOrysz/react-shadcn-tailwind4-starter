@@ -1,24 +1,56 @@
+import offersIntroImg from '@/assets/images/offers-intro.jpg';
+import { Link } from 'react-router-dom';
+
 export default function OffersIntro() {
-  return (
-    <section className="container mx-auto px-4 py-16">
-      <h1 className="text-3xl mb-2">Nasze dostępne oferty</h1>
-      <p className="mb-8">Oferujemy szeroki wybór samochodów importowanych z USA, dostosowanych do Twoich potrzeb.</p>
-      <div className="flex flex-col md:flex-row items-center md:space-x-8">
-        <div className="md:w-1/2 mb-6 md:mb-0">
-          <h2 className="text-2xl mb-4">Sprawdź nasze wyjątkowe oferty samochodów</h2>
-          <p className="mb-4">Oferujemy szeroki wybór samochodów z USA, które spełnią Twoje oczekiwania. Każdy pojazd jest starannie przygotowany i gotowy do sprzedaży.</p>
-          <ul className="list-disc list-inside mb-4 space-y-2">
-            <li>Wysoka jakość i konkurencyjne ceny</li>
-            <li>Sprawdź specyfikacje wybranych modeli</li>
-            <li>Skontaktuj się z nami, aby dowiedzieć się więcej</li>
-          </ul>
-          <div className="flex space-x-4">
-            <button className="px-6 py-3 border rounded">Zobacz →</button>
-            <button className="px-6 py-3 bg-black text-white rounded">Więcej →</button>
-          </div>
-        </div>
-        <div className="md:w-1/2 h-[250px] bg-gray-200"></div>
-      </div>
-    </section>
-);
+	return (
+		<section className="relative py-24 bg-white">
+			<div className="container mx-auto px-8 md:px-16 lg:px-24">
+				<div className="md:flex md:items-center md:space-x-12">
+					{/* Tekst */}
+					<div className="md:w-1/2" data-aos="fade-right">
+						<h1 className="text-4xl font-rubik font-bold text-primary-900 mb-4">
+							Nasze dostępne oferty
+						</h1>
+						<p className="text-lg text-primary-600 mb-8">
+							Oferujemy szeroki wybór samochodów importowanych z USA,
+							dostosowanych do Twoich potrzeb. Każdy pojazd jest starannie
+							przygotowany i gotowy do sprzedaży.
+						</p>
+						<ul className="list-disc list-inside text-primary-600 space-y-2 mb-8">
+							<li>Wysoka jakość i konkurencyjne ceny</li>
+							<li>Sprawdź specyfikacje wybranych modeli</li>
+							<li>Skontaktuj się z nami, aby dowiedzieć się więcej</li>
+						</ul>
+						<div className="flex space-x-4">
+							<Link
+								to="/oferta"
+								className="px-6 py-3 bg-accent-600 text-white rounded-full
+                           hover:bg-accent-700 transition-colors duration-300 font-rubik"
+							>
+								Zobacz →
+							</Link>
+							<Link
+								to="/contact"
+								className="px-6 py-3 border-2 border-accent-600 text-accent-600 rounded-full
+                           hover:bg-accent-600 hover:text-white transition-colors duration-300 font-rubik"
+							>
+								Więcej →
+							</Link>
+						</div>
+					</div>
+					{/* Obraz */}
+					<div
+						className="md:w-1/2 h-64 md:h-96 rounded-2xl overflow-hidden"
+						data-aos="fade-left"
+					>
+						<img
+							src={offersIntroImg}
+							alt="Oferty samochodów"
+							className="w-full h-full object-cover"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+	);
 }
