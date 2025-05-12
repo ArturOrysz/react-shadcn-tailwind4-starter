@@ -17,25 +17,31 @@ export default function Header() {
 	const location = useLocation();
 
 	useEffect(() => {
-		const handleScroll = () => {
-			// Sprawdzamy czy przewinięto 25% wysokości viewportu
+		// Sprawdzamy stan przewinięcia przy montowaniu komponentu
+		const checkScroll = () => {
 			const scrollThreshold = window.innerHeight * 0.25;
-			setIsScrolled(window.scrollY > scrollThreshold);
+			const isScrolledNow = window.scrollY > scrollThreshold;
+			setIsScrolled(isScrolledNow);
 		};
 
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
+		// Wywołujemy sprawdzenie od razu po załadowaniu
+		checkScroll();
+
+		// Nasłuchujemy na zdarzenie scroll
+		window.addEventListener('scroll', checkScroll);
+
+		return () => window.removeEventListener('scroll', checkScroll);
 	}, []);
 
 	const isActive = (path: string) => location.pathname === path;
 
 	return (
 		<header
-			className={`fixed w-full z-50 transition-all duration-300 ease-in-out font-rubik
+			className={`fixed w-full z-50 transition-all duration-300
         ${
 					isScrolled
-						? 'bg-primary-900/95 backdrop-blur py-2'
-						: 'bg-transparent py-4'
+						? 'bg-primary-900/95' // Zmiana na ciemniejszy i mniej przezroczysty
+						: 'bg-transparent'
 				}`}
 		>
 			<div className="container mx-auto px-4">

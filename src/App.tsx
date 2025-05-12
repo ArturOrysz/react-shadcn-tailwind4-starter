@@ -5,7 +5,7 @@ import { Posts } from '@/pages/Posts';
 import { Procedure } from '@/pages/Procedure';
 import { Product } from '@/pages/Product';
 import { Moon, Sun } from 'lucide-react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useTheme } from './components/theme-provider';
 import {
 	DropdownMenu,
@@ -65,15 +65,13 @@ export const AppSidebar = () => {
 
 function App() {
 	return (
-		<Router>
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/procedure" element={<Procedure />} />
-				<Route path="/offers" element={<Offers />} />
-				<Route path="/product" element={<Product />} />
-				<Route path="/posts" element={<Posts />} />
-			</Routes>
-		</Router>
+		<Routes>
+			<Route path="/" element={<Home />} />
+			<Route path="/proces-zakupu" element={<Procedure />} />
+			<Route path="/oferta" element={<Offers />} />
+			<Route path="/product" element={<Product />} />
+			<Route path="/posts" element={<Posts />} />
+		</Routes>
 	);
 }
 
