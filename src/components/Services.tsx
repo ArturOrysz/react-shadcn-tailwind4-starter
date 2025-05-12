@@ -36,16 +36,16 @@ const services = [
 export default function Services() {
 	return (
 		<section className="relative py-24 isolate overflow-hidden bg-primary-900">
-			{/* Tło z flagą USA i filtrem - dodajemy z-index */}
+			{/* Tło z flagą USA i paralaksą */}
 			<div className="absolute inset-0 -z-10">
 				<div
-					className="absolute inset-0 bg-cover bg-center opacity-10 mix-blend-overlay"
+					className="absolute inset-0 bg-cover bg-center bg-fixed opacity-10 mix-blend-overlay"
 					style={{ backgroundImage: `url(${usaFlagBg})` }}
 				/>
 				{/* Czerwona poświata */}
-				<div className="absolute inset-0 bg-gradient-to-b from-accent-600/30 via-primary-900/80 to-primary-900/40" />
-				{/* Dodatkowy efekt świecenia */}
-				<div className="absolute inset-0 bg-accent-600/20 blur-3xl" />
+				<div className="absolute inset-0 bg-gradient-to-b from-accent-600/20 via-primary-900/60 to-primary-900/30" />
+				{/* Efekt rozmycia czerwonej poświaty */}
+				<div className="absolute inset-0 bg-accent-600/10 blur-2xl" />
 			</div>
 
 			<div className="relative container mx-auto px-8 md:px-16 lg:px-24">

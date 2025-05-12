@@ -43,7 +43,7 @@ module.exports = {
 			},
 			fontFamily: {
 				sans: ['Poppins', 'sans-serif'], // czcionka domyślna
-				rubik: ['Rubik', 'sans-serif'], // dla menu i nagłówków
+				teko: ['Teko', 'sans-serif'], // dla menu i nagłówków
 			},
 		},
 	},

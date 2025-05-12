@@ -17,91 +17,62 @@ export default function Header() {
 	const location = useLocation();
 
 	useEffect(() => {
-		// Sprawdzamy stan przewinięcia przy montowaniu komponentu
 		const checkScroll = () => {
-			const scrollThreshold = window.innerHeight * 0.25;
-			const isScrolledNow = window.scrollY > scrollThreshold;
-			setIsScrolled(isScrolledNow);
+			setIsScrolled(window.scrollY > window.innerHeight * 0.25);
 		};
-
-		// Wywołujemy sprawdzenie od razu po załadowaniu
 		checkScroll();
-
-		// Nasłuchujemy na zdarzenie scroll
 		window.addEventListener('scroll', checkScroll);
-
 		return () => window.removeEventListener('scroll', checkScroll);
 	}, []);
 
 	const isActive = (path: string) => location.pathname === path;
 
+	const linkClasses = (active: boolean) =>
+		`relative text-base transition-all duration-300 ease-in-out ${
+			active ? 'text-accent-400 font-medium' : 'text-white/90'
+		} before:content-[''] before:absolute before:left-0 before:-bottom-2 before:h-0.5 before:bg-accent-400 before:w-0 before:transition-all before:duration-300 hover:before:w-full`;
+
 	return (
 		<header
-			className={`fixed w-full z-50 transition-all duration-300
-        ${
-					isScrolled
-						? 'bg-primary-900/95' // Zmiana na ciemniejszy i mniej przezroczysty
-						: 'bg-transparent'
-				}`}
+			className={`fixed w-full z-50 transition-all duration-300 ${
+				isScrolled ? 'bg-primary-900/95 py-2' : 'bg-transparent py-4'
+			}`}
 		>
-			<div className="container mx-auto px-4">
+			<div className="container mx-auto px-6">
 				<div className="flex items-center justify-between">
 					<Link to="/" className="flex items-center">
 						<img
 							src={logo}
 							alt="Detroit Cars Logo"
-							className={`transition-all duration-300 ease-in-out
-                ${isScrolled ? 'h-8' : 'h-10'} w-auto hover:opacity-80`}
+							className={`transition-all duration-300 ease-in-out ${
+								isScrolled ? 'h-8' : 'h-10'
+							} w-auto hover:opacity-80`}
 						/>
 					</Link>
 
-					{/* desktop menu */}
-					<nav className="hidden md:flex space-x-8">
+					{/* desktop menu: show only >=lg, z paddingiem wokół */}
+					<nav className="hidden lg:flex px-6 py-4 space-x-12 bg-primary-900/0">
 						{menuItems.map(({ path, label }) => (
 							<Link
 								key={path}
 								to={path}
-								className={`text-sm transition-all duration-300 ease-in-out
-                  ${isScrolled ? 'py-1' : 'py-2'}
-                  hover:text-accent-400 
-                  ${
-										isActive(path)
-											? 'text-accent-400 font-medium'
-											: 'text-white/90'
-									}`}
+								className={linkClasses(isActive(path))}
 							>
 								{label}
 							</Link>
 						))}
 					</nav>
 
-					<div className="hidden md:flex space-x-4">
-						<button
-							className={`transition-all duration-300 ease-in-out
-                border border-white/30 text-white rounded hover:bg-white/10
-                ${isScrolled ? 'px-3 py-1.5' : 'px-4 py-2'}`}
-						>
-							Zaloguj
-						</button>
-						<button
-							className={`transition-all duration-300 ease-in-out
-                bg-accent-600 text-white rounded hover:bg-accent-700
-                ${isScrolled ? 'px-3 py-1.5' : 'px-4 py-2'}`}
-						>
-							Zarejestruj
-						</button>
-					</div>
-
-					{/* mobile burger */}
+					{/* burger: show below lg */}
 					<button
-						className="md:hidden text-white"
+						className="lg:hidden text-white p-3"
 						onClick={() => setMobileOpen(!mobileOpen)}
 					>
 						<svg
-							className="w-6 h-6"
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
+							className="w-6 h-6"
 						>
 							{mobileOpen ? (
 								<path
@@ -122,30 +93,23 @@ export default function Header() {
 					</button>
 				</div>
 
-				{/* mobile menu */}
+				{/* mobile menu: show below lg, z paddingiem wokół */}
 				{mobileOpen && (
-					<div className="md:hidden mt-4 bg-primary-900/95 backdrop-blur-sm rounded-lg p-4">
-						<nav className="flex flex-col space-y-4">
+					<div className="lg:hidden mt-4 bg-primary-900/95 backdrop-blur-sm rounded-lg">
+						<nav className="flex flex-col px-6 py-4 space-y-6">
 							{menuItems.map(({ path, label }) => (
 								<Link
 									key={path}
 									to={path}
-									className={`text-base hover:text-accent-400 transition-colors ${
-										isActive(path)
-											? 'text-accent-400 font-medium'
-											: 'text-white/90'
-									}`}
+									className={`
+                    ${linkClasses(isActive(path))} 
+                    block
+                  `}
 									onClick={() => setMobileOpen(false)}
 								>
 									{label}
 								</Link>
 							))}
-							<button className="w-full px-4 py-2 border border-white/30 text-white rounded hover:bg-white/10 transition-colors">
-								Zaloguj
-							</button>
-							<button className="w-full px-4 py-2 bg-accent-600 text-white rounded hover:bg-accent-700 transition-colors">
-								Zarejestruj
-							</button>
 						</nav>
 					</div>
 				)}
