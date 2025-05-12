@@ -1,7 +1,10 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap');
 @config "../tailwind.config.js";
 
 @plugin 'tailwindcss-animate';
+
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -54,6 +57,20 @@
   --color-sidebar-ring: hsl(var(--sidebar-ring));
 }
 
+/* Domyślne style dla tekstu */
+body {
+  @apply font-sans;
+}
+
+/* Style dla nagłówków */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-rubik font-bold;
+}
+
+/* Style dla elementów nawigacji */
+nav {
+  @apply font-rubik;
+}
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
