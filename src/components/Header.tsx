@@ -1,3 +1,4 @@
+import logo from '@/images/logo.svg';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -21,7 +22,11 @@ export default function Header() {
 			<div className="container mx-auto px-4 py-4">
 				<div className="flex items-center justify-between bg-transparent">
 					<Link to="/" className="text-2xl font-bold text-white">
-						Logo
+						<img
+							src={logo}
+							alt="Detroit Cars Logo"
+							className="h-10 w-auto" // dostosuj rozmiar według potrzeb
+						/>
 					</Link>
 
 					{/* desktop menu */}
